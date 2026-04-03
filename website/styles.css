@@ -1,0 +1,27 @@
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f7f6; color: #333; }
+header { background: #002d72; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+.badge { padding: 5px 10px; border-radius: 5px; font-weight: bold; }
+.incomplete { background: #d9534f; }
+.complete { background: #5cb85c; }
+main { padding: 20px; display: flex; justify-content: space-between; gap: 20px; }
+.dashboard { flex: 2; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.email-client { border: 1px solid #ccc; border-radius: 5px; margin-bottom: 20px; }
+.email-header { background: #eee; padding: 10px; border-bottom: 1px solid #ccc; }
+.email-body { padding: 20px; }
+.malicious-link { background: none; border: none; color: blue; text-decoration: underline; cursor: pointer; font-size: 16px; }
+.btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; color: white; }
+.safe { background: #f0ad4e; }
+.feedback { padding: 15px; margin-top: 20px; border-radius: 5px; font-weight: bold; }
+.hidden { display: none; }
+.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+/* AI Assistant */
+.ai-assistant { flex: 1; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; height: 400px; }
+.ai-header { background: #0056b3; color: white; padding: 15px; border-radius: 8px 8px 0 0; font-weight: bold; }
+.ai-chat { flex: 1; padding: 15px; overflow-y: auto; background: #fafafa; }
+.ai-msg { background: #e2e3e5; padding: 10px; border-radius: 5px; margin-bottom: 10px; font-size: 14px; }
+.user-msg { background: #0056b3; color: white; padding: 10px; border-radius: 5px; margin-bottom: 10px; font-size: 14px; text-align: right; }
+.ai-input { display: flex; border-top: 1px solid #ccc; }
+.ai-input input { flex: 1; padding: 10px; border: none; outline: none; }
+.ai-input button { padding: 10px; background: #0056b3; color: white; border: none; cursor: pointer; }
