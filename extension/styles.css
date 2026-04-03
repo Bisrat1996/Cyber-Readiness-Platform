@@ -1,0 +1,10 @@
+#cyber-tooltip {
+    background-color: #002d72;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+    pointer-events: none; /* So it doesn't block clicking */
+}
