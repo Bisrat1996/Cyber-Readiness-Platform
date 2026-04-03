@@ -1,27 +1,81 @@
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f7f6; color: #333; }
-header { background: #002d72; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
-.badge { padding: 5px 10px; border-radius: 5px; font-weight: bold; }
-.incomplete { background: #d9534f; }
-.complete { background: #5cb85c; }
-main { padding: 20px; display: flex; justify-content: space-between; gap: 20px; }
-.dashboard { flex: 2; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-.email-client { border: 1px solid #ccc; border-radius: 5px; margin-bottom: 20px; }
-.email-header { background: #eee; padding: 10px; border-bottom: 1px solid #ccc; }
-.email-body { padding: 20px; }
-.malicious-link { background: none; border: none; color: blue; text-decoration: underline; cursor: pointer; font-size: 16px; }
-.btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; color: white; }
-.safe { background: #f0ad4e; }
-.feedback { padding: 15px; margin-top: 20px; border-radius: 5px; font-weight: bold; }
-.hidden { display: none; }
-.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+:root {
+    --primary: #0F172A; /* Deep navy */
+    --accent: #3B82F6; /* Bright blue */
+    --success: #10B981; /* Green */
+    --danger: #EF4444; /* Red */
+    --bg-color: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --text-main: #334155;
+}
 
-/* AI Assistant */
-.ai-assistant { flex: 1; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; height: 400px; }
-.ai-header { background: #0056b3; color: white; padding: 15px; border-radius: 8px 8px 0 0; font-weight: bold; }
-.ai-chat { flex: 1; padding: 15px; overflow-y: auto; background: #fafafa; }
-.ai-msg { background: #e2e3e5; padding: 10px; border-radius: 5px; margin-bottom: 10px; font-size: 14px; }
-.user-msg { background: #0056b3; color: white; padding: 10px; border-radius: 5px; margin-bottom: 10px; font-size: 14px; text-align: right; }
-.ai-input { display: flex; border-top: 1px solid #ccc; }
-.ai-input input { flex: 1; padding: 10px; border: none; outline: none; }
-.ai-input button { padding: 10px; background: #0056b3; color: white; border: none; cursor: pointer; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { display: flex; height: 100vh; background-color: var(--bg-color); color: var(--text-main); }
+
+/* Sidebar */
+.sidebar { width: 250px; background: var(--primary); color: white; display: flex; flex-direction: column; padding: 20px 0; }
+.logo { font-size: 20px; font-weight: 700; padding: 0 20px 20px; border-bottom: 1px solid #334155; margin-bottom: 20px; }
+nav { display: flex; flex-direction: column; flex-grow: 1; }
+.nav-btn { background: none; border: none; color: #94A3B8; text-align: left; padding: 15px 20px; font-size: 16px; cursor: pointer; transition: 0.3s; }
+.nav-btn i { width: 25px; }
+.nav-btn:hover, .nav-btn.active { background: #1E293B; color: white; border-left: 4px solid var(--accent); }
+.status-box { margin: 20px; padding: 15px; background: #1E293B; border-radius: 8px; text-align: center; }
+.badge { display: inline-block; padding: 5px 10px; margin-top: 10px; border-radius: 5px; font-weight: bold; font-size: 14px; }
+.badge.incomplete { background: var(--danger); color: white; }
+.badge.complete { background: var(--success); color: white; }
+
+/* Main Content */
+.content { flex: 1; padding: 40px; overflow-y: auto; }
+h1 { font-size: 28px; color: var(--primary); margin-bottom: 5px; }
+h2 { margin-bottom: 20px; color: var(--primary); }
+.view { display: none; background: var(--card-bg); padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-top: 20px; }
+.view.active-view { display: block; animation: fadeIn 0.4s; }
+
+/* Progress Bar */
+.progress-container { background: var(--card-bg); padding: 20px; border-radius: 12px; margin-top: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.progress-info { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; }
+.progress-bar-bg { width: 100%; height: 10px; background: #E2E8F0; border-radius: 5px; overflow: hidden; }
+.progress-bar-fill { height: 100%; width: 0%; background: var(--success); transition: width 0.5s ease-in-out; }
+
+/* Cards */
+.card-grid { display: flex; gap: 20px; margin-top: 20px; }
+.card { flex: 1; padding: 20px; background: #F1F5F9; border-radius: 8px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #CBD5E1; }
+.card.done { border-left-color: var(--success); background: #ECFDF5; }
+
+/* Interactions */
+.btn { padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.2s; }
+.btn.primary { background: var(--accent); color: white; }
+.btn.primary:hover { background: #2563EB; }
+.email-client { border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 20px; }
+.email-header { background: #F8FAFC; padding: 15px; border-bottom: 1px solid #E2E8F0; }
+.email-body { padding: 20px; }
+.malicious-link { background: none; border: none; color: #2563EB; text-decoration: underline; cursor: pointer; font-size: 16px; }
+
+/* Passwords & Quizzes */
+.modern-input { width: 100%; padding: 15px; font-size: 16px; border: 2px solid #E2E8F0; border-radius: 8px; margin-bottom: 10px; }
+.meter-bg { width: 100%; height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden; margin-bottom: 10px; }
+.meter-fill { height: 100%; width: 0%; background: var(--danger); transition: 0.3s; }
+.pwd-feedback { font-weight: bold; margin-bottom: 20px; color: #64748B; }
+.quiz-question { margin-bottom: 20px; }
+.btn-quiz { display: block; width: 100%; text-align: left; padding: 12px; margin-top: 10px; border: 1px solid #E2E8F0; background: white; border-radius: 6px; cursor: pointer; }
+.btn-quiz:hover { background: #F1F5F9; }
+.btn-quiz.correct { background: var(--success); color: white; }
+.btn-quiz.wrong { background: var(--danger); color: white; }
+
+/* AI Floating Widget */
+.ai-widget { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
+.ai-toggle-btn { width: 60px; height: 60px; border-radius: 50%; background: var(--primary); color: white; font-size: 24px; border: none; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+.ai-window { position: absolute; bottom: 80px; right: 0; width: 300px; height: 400px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; flex-direction: column; overflow: hidden; }
+.ai-window.hidden { display: none; }
+.ai-header { background: var(--primary); color: white; padding: 15px; font-weight: bold; }
+.ai-chat { flex: 1; padding: 15px; overflow-y: auto; background: #F8FAFC; }
+.ai-msg { background: #E2E8F0; padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; width: fit-content; }
+.user-msg { background: var(--accent); color: white; padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; align-self: flex-end; margin-left: auto; width: fit-content;}
+.ai-input { display: flex; border-top: 1px solid #E2E8F0; }
+.ai-input input { flex: 1; padding: 15px; border: none; outline: none; }
+.ai-input button { padding: 15px; background: white; color: var(--accent); border: none; cursor: pointer; font-size: 18px; }
+
+.feedback { padding: 15px; margin-top: 15px; border-radius: 6px; font-weight: bold; }
+.feedback.success { background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; }
+.feedback.error { background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
+.hidden { display: none !important; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
