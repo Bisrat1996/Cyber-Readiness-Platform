@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Readiness Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>ShieldTech Cyber Readiness Platform</h1>
+        <div class="user-info">Onboarding Status: <span id="status-badge" class="badge incomplete">Incomplete</span></div>
+    </header>
+
+    <main>
+        <section class="dashboard">
+            <h2>Module 1: Phishing Simulation</h2>
+            <p>Review the email below. Is it safe or a phishing attempt?</p>
+            
+            <div class="email-client">
+                <div class="email-header">
+                    <p><strong>From:</strong> IT-Support &lt;admin@it-supp0rt-portal.com&gt;</p>
+                    <p><strong>Subject:</strong> URGENT: Password Expiry in 2 Hours</p>
+                </div>
+                <div class="email-body">
+                    <p>Dear Employee,</p>
+                    <p>Your corporate password will expire in 2 hours. Click the link below to reset it immediately or you will lose access to all company systems.</p>
+                    <button class="malicious-link" id="bad-link">Reset Password Now</button>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="btn-report" class="btn safe">Flag as Phishing</button>
+            </div>
+
+            <div id="feedback-banner" class="feedback hidden"></div>
+        </section>
+
+        <!-- AI Assistant UI -->
+        <div class="ai-assistant">
+            <div class="ai-header">Cyber Assistant AI</div>
+            <div class="ai-chat" id="ai-chat">
+                <p class="ai-msg">Hi! I'm your digital assistant. Ask me about phishing or passwords!</p>
+            </div>
+            <div class="ai-input">
+                <input type="text" id="ai-input" placeholder="Type a question...">
+                <button id="btn-ask">Ask</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
