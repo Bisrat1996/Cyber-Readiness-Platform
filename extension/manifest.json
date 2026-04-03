@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Cyber Readiness Assistant",
+  "version": "1.0",
+  "description": "Provides continuous, real-time cybersecurity reinforcement during daily tasks.",
+  "permissions": ["activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
