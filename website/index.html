@@ -3,51 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Readiness Platform</title>
+    <title>ShieldTech Readiness Platform</title>
+    <!-- Modern Font and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>ShieldTech Cyber Readiness Platform</h1>
-        <div class="user-info">Onboarding Status: <span id="status-badge" class="badge incomplete">Incomplete</span></div>
-    </header>
 
-    <main>
-        <section class="dashboard">
-            <h2>Module 1: Phishing Simulation</h2>
-            <p>Review the email below. Is it safe or a phishing attempt?</p>
-            
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="logo"><i class="fa-solid fa-shield-halved"></i> ShieldTech</div>
+        <nav>
+            <button class="nav-btn active" data-target="dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</button>
+            <button class="nav-btn" data-target="phishing"><i class="fa-solid fa-envelope-open-text"></i> Phishing Sim</button>
+            <button class="nav-btn" data-target="passwords"><i class="fa-solid fa-key"></i> Password Coach</button>
+            <button class="nav-btn" data-target="quiz"><i class="fa-solid fa-clipboard-question"></i> Assessment</button>
+        </nav>
+        <div class="status-box">
+            <p>Onboarding Status</p>
+            <span id="status-badge" class="badge incomplete">Incomplete</span>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content">
+        <header>
+            <h1>Welcome, New Hire</h1>
+            <p>Complete all modules to unlock full system access.</p>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-info">
+                <span>Overall Readiness</span>
+                <span id="progress-text">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- VIEWS -->
+        <div id="dashboard" class="view active-view">
+            <h2><i class="fa-solid fa-rocket"></i> Getting Started</h2>
+            <p>Organizations face significant challenges in delivering efficient cybersecurity training. Human error remains a leading cause of breaches.</p>
+            <p>Please use the sidebar to complete your mandatory interactive training. You must reach 100% readiness to complete your onboarding.</p>
+            <div class="card-grid">
+                <div class="card" id="card-phishing">Module 1: Phishing <span>Pending</span></div>
+                <div class="card" id="card-passwords">Module 2: Passwords <span>Pending</span></div>
+                <div class="card" id="card-quiz">Module 3: Assessment <span>Pending</span></div>
+            </div>
+        </div>
+
+        <div id="phishing" class="view">
+            <h2>Module 1: Identify the Threat</h2>
             <div class="email-client">
                 <div class="email-header">
                     <p><strong>From:</strong> IT-Support &lt;admin@it-supp0rt-portal.com&gt;</p>
                     <p><strong>Subject:</strong> URGENT: Password Expiry in 2 Hours</p>
                 </div>
                 <div class="email-body">
-                    <p>Dear Employee,</p>
-                    <p>Your corporate password will expire in 2 hours. Click the link below to reset it immediately or you will lose access to all company systems.</p>
+                    <p>Your corporate password will expire in 2 hours. Click the link below to reset it immediately or you will lose access.</p>
                     <button class="malicious-link" id="bad-link">Reset Password Now</button>
                 </div>
             </div>
+            <button id="btn-report" class="btn primary">Flag as Phishing</button>
+            <div id="feedback-phishing" class="feedback hidden"></div>
+        </div>
 
-            <div class="actions">
-                <button id="btn-report" class="btn safe">Flag as Phishing</button>
-            </div>
+        <div id="passwords" class="view">
+            <h2>Module 2: The Password Coach</h2>
+            <p>Traditional passwords are weak. Enter a password below to see how long it would take a hacker to crack it. <strong>Goal: Create a Passphrase.</strong></p>
+            <input type="text" id="password-input" class="modern-input" placeholder="Type a test password here...">
+            <div class="meter-bg"><div class="meter-fill" id="password-meter"></div></div>
+            <p id="password-feedback" class="pwd-feedback">Waiting for input...</p>
+            <button id="btn-complete-pwd" class="btn primary hidden">Submit Secure Passphrase</button>
+        </div>
 
-            <div id="feedback-banner" class="feedback hidden"></div>
-        </section>
-
-        <!-- AI Assistant UI -->
-        <div class="ai-assistant">
-            <div class="ai-header">Cyber Assistant AI</div>
-            <div class="ai-chat" id="ai-chat">
-                <p class="ai-msg">Hi! I'm your digital assistant. Ask me about phishing or passwords!</p>
+        <div id="quiz" class="view">
+            <h2>Module 3: Final Assessment</h2>
+            <div class="quiz-question">
+                <p><strong>1. What is the most effective type of password?</strong></p>
+                <button class="btn-quiz" onclick="checkQuiz(this, false)">A single complex word</button>
+                <button class="btn-quiz" onclick="checkQuiz(this, true)">A passphrase of 3-4 random words</button>
             </div>
-            <div class="ai-input">
-                <input type="text" id="ai-input" placeholder="Type a question...">
-                <button id="btn-ask">Ask</button>
+            <div class="quiz-question">
+                <p><strong>2. If an email has a sense of extreme urgency, you should:</strong></p>
+                <button class="btn-quiz" onclick="checkQuiz(this, false)">Act quickly to be safe</button>
+                <button class="btn-quiz" onclick="checkQuiz(this, true)">Stop and verify the sender's actual address</button>
             </div>
+            <div id="feedback-quiz" class="feedback hidden"></div>
         </div>
     </main>
+
+    <!-- Floating AI Widget -->
+    <div class="ai-widget">
+        <button id="ai-toggle" class="ai-toggle-btn"><i class="fa-solid fa-robot"></i></button>
+        <div id="ai-window" class="ai-window hidden">
+            <div class="ai-header">Cyber Assistant AI</div>
+            <div class="ai-chat" id="ai-chat">
+                <p class="ai-msg">Hi! Ask me for a hint if you get stuck!</p>
+            </div>
+            <div class="ai-input">
+                <input type="text" id="ai-input" placeholder="Type here...">
+                <button id="btn-ask"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
